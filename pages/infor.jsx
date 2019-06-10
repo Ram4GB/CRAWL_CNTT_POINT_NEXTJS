@@ -68,7 +68,7 @@ export default class infor extends Component {
     const { sv } = this.props;
     return (
       <MainLayout>
-        <Row style={{ width: "80%", margin: "auto" }}>
+        <Row style={{ width: "90%", margin: "auto" }}>
           <Col style={{ margin: "10px" }}>
             <Descriptions column={1} bordered title="Chi tiết của sinh viên ">
               <Descriptions.Item label="Mã sinh viên">
@@ -81,7 +81,7 @@ export default class infor extends Component {
               <Descriptions.Item label="Lớp">{sv.lop}</Descriptions.Item>
               <Descriptions.Item label="Khoa">{sv.khoa}</Descriptions.Item>
               <Descriptions.Item label="Ngành">{sv.nganh}</Descriptions.Item>
-              <Descriptions.Item label="Điểm các học kì">
+              <Descriptions.Item label="Điểm">
                 {this.showPointStudent(sv)}
               </Descriptions.Item>
             </Descriptions>

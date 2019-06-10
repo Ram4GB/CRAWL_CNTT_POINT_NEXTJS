@@ -10,7 +10,7 @@ const columns = [
     key: "msv",
     defaultSortOrder: "descend",
     sorter: (a, b) => a.mssv - b.mssv,
-    align: "center"
+    align: "left"
   },
   {
     title: "Lớp",
@@ -18,7 +18,7 @@ const columns = [
     key: "lop",
     defaultSortOrder: "descend",
     // sorter: (a, b) => a.lop - b.lop,
-    align: "center"
+    align: "left"
   }
 ];
 export default class index extends Component {
@@ -57,7 +57,7 @@ export default class index extends Component {
               dataSource={this.props.dataSource}
               size={"small"}
               onChange={this.onChange}
-              rowSelection={rowSelection}
+              // rowSelection={rowSelection}
               columns={columns}
               title={() => (
                 <h4 style={{ textAlign: "center" }}>
