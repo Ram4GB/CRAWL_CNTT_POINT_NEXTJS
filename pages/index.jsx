@@ -3,12 +3,14 @@ import { Table, Row, Col, Descriptions } from "antd";
 import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
 import Link from "next/link";
+import Summary from "../components/Summary";
+import Chart from "../components/Chart";
+
 const columns = [
   {
     title: "Mã sinh viên",
     dataIndex: "mssv",
     key: "msv",
-    defaultSortOrder: "descend",
     sorter: (a, b) => a.mssv - b.mssv,
     align: "left"
   },
@@ -16,7 +18,6 @@ const columns = [
     title: "Lớp",
     dataIndex: "lop",
     key: "lop",
-    defaultSortOrder: "descend",
     // sorter: (a, b) => a.lop - b.lop,
     align: "left"
   }
@@ -44,10 +45,10 @@ export default class index extends Component {
   onChange = () => {};
   render() {
     const { selectedRowKeys } = this.state;
-    const rowSelection = {
-      selectedRowKeys,
-      onChange: this.onSelectChange
-    };
+    // const rowSelection = {
+    //   selectedRowKeys,
+    //   onChange: this.onSelectChange
+    // };
     return (
       <MainLayout>
         <Row>
@@ -64,9 +65,7 @@ export default class index extends Component {
                   Bảng điểm học tập của sinh viên
                 </h4>
               )}
-              footer={() => (
-                <h5 style={{ textAlign: "center" }}>Ram4gb && Ninh</h5>
-              )}
+              footer={() => <h5 style={{ textAlign: "center" }} />}
               expandedRowRender={record => (
                 <Descriptions bordered column={1} title="User Info">
                   <Descriptions.Item label="Mã sinh viên">
@@ -92,29 +91,14 @@ export default class index extends Component {
             />
           </Col>
         </Row>
-        <style jsx>
-          {`
-            /* width */
-            ::-webkit-scrollbar {
-              width: 8px;
-            }
-
-            /* Track */
-            ::-webkit-scrollbar-track {
-              background: #f1f1f1;
-            }
-
-            /* Handle */
-            ::-webkit-scrollbar-thumb {
-              background: tomato;
-            }
-
-            /* Handle on hover */
-            ::-webkit-scrollbar-thumb:hover {
-              background: #555;
-            }
-          `}
-        </style>
+        <Row>
+          <Col sm={24} lg={12}>
+            <Summary data={this.props.dataSource} />
+          </Col>
+          <Col sm={24} lg={12}>
+            <Chart data={this.props.dataSource} />
+          </Col>
+        </Row>
       </MainLayout>
     );
   }

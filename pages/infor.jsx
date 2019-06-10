@@ -50,7 +50,7 @@ export default class infor extends Component {
 
     let hk3 = sv.HK3 ? sv.HK3 : null;
     if (hk3) {
-      let data = Object.entries(hk1);
+      let data = Object.entries(hk3);
       s.push(<p>Điểm học kì 3</p>);
       for (let i = 0; i < data.length; i++) {
         s.push(

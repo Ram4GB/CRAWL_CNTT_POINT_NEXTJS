@@ -8,7 +8,14 @@ export default class about extends Component {
   render() {
     return (
       <MainLayout>
-        <p>About</p>
+        <p>
+          Lê Minh Cường:{" "}
+          <a href="https://facebook.com/le.minhcuong.9638">Facebook</a>
+        </p>
+        <p>
+          Nguyễn An Ninh{" "}
+          <a href="https://www.facebook.com/ninhnguyen375">Facebook</a>
+        </p>
       </MainLayout>
     );
   }

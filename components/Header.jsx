@@ -6,10 +6,10 @@ export default class Header extends Component {
     return (
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "#e3f2fd" }}
+        style={{ backgroundColor: "#e3f2fd", fontSize: "1.2em" }}
       >
         <a className="navbar-brand" href="#">
-          Navbar
+          NiRam
         </a>
         <button
           className="navbar-toggler"
