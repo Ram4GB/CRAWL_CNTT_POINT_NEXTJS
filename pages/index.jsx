@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import Link from "next/link";
 import Summary from "../components/Summary";
 import Chart from "../components/Chart";
+import Search from "../components/Search";
 
 const columns = [
   {
@@ -97,6 +98,11 @@ export default class index extends Component {
           </Col>
           <Col sm={24} lg={12}>
             <Chart data={this.props.dataSource} />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={24} lg={12}>
+            <Search data={this.props.dataSource} />
           </Col>
         </Row>
       </MainLayout>
