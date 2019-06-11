@@ -1,35 +1,17 @@
 import React, { Component } from "react";
-import { Table, Row, Col, Descriptions } from "antd";
+import { Row, Col, Select } from "antd";
 import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
 import Link from "next/link";
 import Summary from "../components/Summary";
 import Chart from "../components/Chart";
 import Search from "../components/Search";
+import SummaryPointsByClass from "../components/SummaryPointsByClass";
+import constant from "../constants/constants";
+import TableSummary from "../components/TableSummary";
 
-const columns = [
-  {
-    title: "Mã sinh viên",
-    dataIndex: "mssv",
-    key: "msv",
-    sorter: (a, b) => a.mssv - b.mssv,
-    align: "left"
-  },
-  {
-    title: "Lớp",
-    dataIndex: "lop",
-    key: "lop",
-    // sorter: (a, b) => a.lop - b.lop,
-    align: "left"
-  }
-];
+const { Option } = Select;
 export default class index extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedRowKeys: []
-    };
-  }
   static async getInitialProps() {
     let data = await axios({
       method: "GET",
@@ -39,73 +21,112 @@ export default class index extends Component {
       .then(data);
     return { dataSource: data.data };
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedRowKeys: [],
+      dataSource: [],
+      khoa: "cntt"
+    };
+  }
   onSelectChange = selectedRowKeys => {
     console.log("selectedRowKeys changed: ", selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
   onChange = () => {};
+  handleChange = async value => {
+    let data;
+    switch (value) {
+      case constant.CNTT_K17:
+        data = await axios({
+          method: "GET",
+          url: "https://api-with-json-server.herokuapp.com/CNTT_K17"
+        }).catch(e => console.log(e));
+        this.setState({
+          dataSource: data.data,
+          khoa: value
+        });
+        break;
+      case constant.CNTT_K18:
+        data = await axios({
+          method: "GET",
+          url: "https://api-with-json-server.herokuapp.com/CNTT_K18"
+        }).catch(e => console.log(e));
+        this.setState({
+          dataSource: data.data,
+          khoa: value
+        });
+        break;
+      case constant.QTKD_K17:
+        data = await axios({
+          method: "GET",
+          url: "https://api-with-json-server.herokuapp.com/qtkd_k17"
+        }).catch(e => console.log(e));
+        this.setState({
+          dataSource: data.data,
+          khoa: value
+        });
+        break;
+      case constant.QTKD_K18:
+        data = await axios({
+          method: "GET",
+          url: "https://api-with-json-server.herokuapp.com/QTKD_K18"
+        }).catch(e => console.log(e));
+        this.setState({
+          dataSource: data.data,
+          khoa: value
+        });
+        break;
+    }
+  };
   render() {
-    const { selectedRowKeys } = this.state;
-    // const rowSelection = {
-    //   selectedRowKeys,
-    //   onChange: this.onSelectChange
-    // };
+    const { selectedRowKeys, dataSource, khoa } = this.state;
     return (
       <MainLayout>
         <Row>
+          <Col sm={24} lg={24}>
+            <Select
+              onChange={this.handleChange}
+              defaultValue={`Khoa CNTT K17`}
+              style={{ width: 150 }}
+            >
+              <Option value={constant.CNTT_K17}>Khoa CNTT K17</Option>
+              <Option value={constant.CNTT_K18}>Khoa CNTT K18</Option>
+              <Option value={constant.QTKD_K17}>Khoa QTKD K17</Option>
+              <Option value={constant.QTKD_K18}>Khoa QTKD K18</Option>
+            </Select>
+          </Col>
+        </Row>
+        <Row>
           <Col sm={24}>
-            <Table
-              rowKey={record => record.mssv}
-              dataSource={this.props.dataSource}
-              size={"small"}
-              onChange={this.onChange}
-              // rowSelection={rowSelection}
-              columns={columns}
-              title={() => (
-                <h4 style={{ textAlign: "center" }}>
-                  Bảng điểm học tập của sinh viên
-                </h4>
-              )}
-              footer={() => <h5 style={{ textAlign: "center" }} />}
-              expandedRowRender={record => (
-                <Descriptions bordered column={1} title="User Info">
-                  <Descriptions.Item label="Mã sinh viên">
-                    {record.mssv}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Tên">
-                    {record.ten}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Lớp">
-                    {record.nganh}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Khoa">
-                    {record.khoa}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Thông tin điểm">
-                    <Link href={`/infor?id=${record.mssv}`}>
-                      <a>Chi tiết</a>
-                    </Link>
-                  </Descriptions.Item>
-                </Descriptions>
-              )}
-              bordered
-            />
+            <TableSummary khoa={khoa} dataSource={dataSource} />
           </Col>
         </Row>
         <Row>
           <Col sm={24} lg={12}>
-            <Summary data={this.props.dataSource} />
+            <Summary data={dataSource} />
           </Col>
           <Col sm={24} lg={12}>
-            <Chart data={this.props.dataSource} />
+            <Chart data={dataSource} />
           </Col>
         </Row>
         <Row>
           <Col sm={24} lg={12}>
-            <Search data={this.props.dataSource} />
+            <Search data={dataSource} />
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={24} lg={24}>
+            <SummaryPointsByClass data={dataSource} />
           </Col>
         </Row>
       </MainLayout>
     );
+  }
+  componentWillMount() {
+    let { dataSource } = this.props;
+    this.setState({
+      dataSource
+    });
   }
 }

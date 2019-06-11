@@ -46,4 +46,10 @@ export default class Chart extends Component {
       data
     });
   }
+  UNSAFE_componentWillReceiveProps(next) {
+    let data = tongKetLopCuaKhoa(next.data);
+    this.setState({
+      data
+    });
+  }
 }

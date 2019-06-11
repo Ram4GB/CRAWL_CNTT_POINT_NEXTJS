@@ -1,3 +1,4 @@
+import FastSort from "fast-sort";
 function convertSVToObject(data) {
   let arr = [];
   for (let i = 0; i < data.length; i++) {
@@ -35,21 +36,42 @@ function removeAccent(str) {
 }
 
 function tongKetLopCuaKhoa(arr) {
-  console.log(arr.length);
   let lop = [];
   for (let i = 0; i < arr.length; i++) {
-    if (lop.findIndex(u => u.lop === arr[i].lop) == -1) {
+    if (lop.findIndex(u => u.lop == arr[i].lop) == -1) {
       let dem = 1;
+      let sinhVien = arr[i];
+      let max = arr[i].diemHe4TichLuy;
       for (let j = i + 1; j < arr.length; j++)
-        if (arr[i].lop.indexOf(arr[j].lop) !== -1) dem++;
+        if (arr[i].lop.indexOf(arr[j].lop) != -1) {
+          dem++;
+          if (parseFloat(max) < parseFloat(arr[j].diemHe4TichLuy)) {
+            max = arr[j].diemHe4TichLuy;
+            sinhVien = arr[j];
+          }
+        }
       let obj = {
         lop: arr[i].lop,
-        sl: dem
+        sl: dem,
+        sinhVien,
+        max
       };
       lop.push(obj);
     }
+    FastSort(lop).asc(u => u.lop);
   }
+  console.log(lop);
   return lop;
 }
 
-export { convertSVToObject, removeAccent, tongKetLopCuaKhoa };
+function timSinhVienCaoNhatTheoLop(arr) {
+  let temp = tongKetLopCuaKhoa(arr);
+  return temp;
+}
+
+export {
+  convertSVToObject,
+  removeAccent,
+  tongKetLopCuaKhoa,
+  timSinhVienCaoNhatTheoLop
+};

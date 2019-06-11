@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Table, InputNumber } from "antd";
 import FastSort from "fast-sort";
-import { convertSVToObject, tongKetLopCuaKhoa } from "../codes/code";
 
 const columns = [
   {
@@ -10,7 +9,7 @@ const columns = [
   },
   {
     title: "Điểm sinh viên",
-    dataIndex: "diem"
+    dataIndex: "diemHe4TichLuy"
   },
   {
     title: "Mã sinh viên",
@@ -27,6 +26,8 @@ export default class Summary extends Component {
     };
   }
   render() {
+    // console.log(this.props.data);
+    console.log(this.state.data);
     return (
       <div style={{ height: "500px", overflowY: "scroll" }}>
         <Table
@@ -44,29 +45,25 @@ export default class Summary extends Component {
           bordered
           columns={columns}
           rowKey={u => u.mssv}
-          dataSource={this.state.data}
+          dataSource={this.getDataSource()}
         />
       </div>
     );
   }
   handleChange = e => {
-    let arr = [];
-    arr = convertSVToObject(this.props.data);
-    FastSort(arr).desc(u => u.diem);
     this.setState({
-      top: e,
-      data: arr.slice(0, e)
+      top: e
     });
   };
   componentDidMount() {
-    const { data } = this.props;
-    let arr = [];
-    arr = convertSVToObject(data);
-    FastSort(arr).desc(u => u.diem);
-    this.setState({
-      data: arr.slice(0, this.state.top)
-    });
-    console.log(tongKetLopCuaKhoa(data));
-    return arr.slice(0, this.state.top);
+    let { data } = this.props;
+    FastSort(data).desc(u => parseFloat(u.diemHe4TichLuy));
   }
+  getDataSource = () => {
+    let arr = this.props.data;
+    let top = this.state.top;
+    FastSort(arr).desc(u => parseFloat(u.diemHe4TichLuy));
+    arr = arr.slice(0, top);
+    return arr;
+  };
 }

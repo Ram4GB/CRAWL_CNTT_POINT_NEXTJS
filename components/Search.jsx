@@ -43,8 +43,8 @@ export default class Search extends Component {
   render() {
     return (
       <form action="" style={{ margin: "20px" }}>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Tra cứu hạng</label>
+        <div className="form-group">
+          <label>Tra cứu hạng</label>
           <AutoComplete
             dataSource={this.state.dataSource}
             onSelect={onSelect}
