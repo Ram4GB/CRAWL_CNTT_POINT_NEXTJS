@@ -5,8 +5,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  BarChart,
-  Bar,
   LineChart,
   Line
 } from "recharts";
@@ -24,7 +22,7 @@ export default class SummaryPointsByClass extends Component {
         <h3 style={{ textAlign: "center" }} className="h3">
           Điểm Cao nhất theo lớp
         </h3>
-        <LineChart width={1200} height={250} data={this.state.data}>
+        <LineChart width={800} height={250} data={this.state.data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="lop" />
           <YAxis />

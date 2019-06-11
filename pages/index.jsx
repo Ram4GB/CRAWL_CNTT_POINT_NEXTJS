@@ -26,7 +26,8 @@ export default class index extends Component {
     this.state = {
       selectedRowKeys: [],
       dataSource: [],
-      khoa: "cntt"
+      khoa: constant.CNTT_K17,
+      isLoading: false
     };
   }
   onSelectChange = selectedRowKeys => {
@@ -36,6 +37,9 @@ export default class index extends Component {
   onChange = () => {};
   handleChange = async value => {
     let data;
+    this.setState({
+      isLoading: true
+    });
     switch (value) {
       case constant.CNTT_K17:
         data = await axios({
@@ -78,9 +82,12 @@ export default class index extends Component {
         });
         break;
     }
+    this.setState({
+      isLoading: false
+    });
   };
   render() {
-    const { selectedRowKeys, dataSource, khoa } = this.state;
+    const { selectedRowKeys, dataSource, khoa, isLoading } = this.state;
     return (
       <MainLayout>
         <Row>
@@ -99,12 +106,16 @@ export default class index extends Component {
         </Row>
         <Row>
           <Col sm={24}>
-            <TableSummary khoa={khoa} dataSource={dataSource} />
+            <TableSummary
+              isLoading={isLoading}
+              khoa={khoa}
+              dataSource={dataSource}
+            />
           </Col>
         </Row>
         <Row>
           <Col sm={24} lg={12}>
-            <Summary data={dataSource} />
+            <Summary isLoading={isLoading} data={dataSource} />
           </Col>
           <Col sm={24} lg={12}>
             <Chart data={dataSource} />
@@ -116,8 +127,8 @@ export default class index extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm={24} lg={24}>
-            <SummaryPointsByClass data={dataSource} />
+          <Col sm={24} lg={12}>
+            <SummaryPointsByClass isLoading={isLoading} data={dataSource} />
           </Col>
         </Row>
       </MainLayout>

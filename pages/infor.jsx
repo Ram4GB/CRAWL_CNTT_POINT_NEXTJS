@@ -5,11 +5,17 @@ import { Descriptions, Row, Col, Divider } from "antd";
 
 export default class infor extends Component {
   static async getInitialProps({ query }) {
-    let data = await axios({
-      method: "GET",
-      url: `https://api-with-json-server.herokuapp.com/CNTT_K17?mssv=${
+    console.log(
+      `https://api-with-json-server.herokuapp.com/${query.faculty}?mssv=${
         query.id
       }`
+    );
+    let data = await axios({
+      method: "GET",
+      url: `https://api-with-json-server.herokuapp.com/${query.faculty}?mssv=${
+        query.id
+      }`
+      //https://api-with-json-server.herokuapp.com/CNTT_K17?mssv=3117410027
     });
 
     return { sv: data.data[0] };
@@ -75,7 +81,7 @@ export default class infor extends Component {
                 {sv.mssv}
               </Descriptions.Item>
               <Descriptions.Item label="Tình trạng">
-                {sv.HK3 ? "Đang học" : "Đã nghĩ học"}
+                {sv.HK3 ? "Đang học" : "Đã nghỉ học"}
               </Descriptions.Item>
               <Descriptions.Item label="Tên">{sv.ten}</Descriptions.Item>
               <Descriptions.Item label="Lớp">{sv.lop}</Descriptions.Item>

@@ -19,9 +19,10 @@ const columns = [
 ];
 export default class TableSummary extends Component {
   render() {
-    const { dataSource, khoa } = this.props;
+    const { dataSource, khoa, isLoading } = this.props;
     return (
       <Table
+        loading={isLoading}
         rowKey={record => record.mssv}
         dataSource={dataSource}
         size={"small"}

@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Head from "next/head";
 import NProgress from "nprogress";
 import Router from "next/router";
+import { BackTop } from "antd";
 Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
 Router.onRouteChangeError = url => NProgress.done();
@@ -40,6 +41,7 @@ export default class MainLayout extends Component {
         <Header />
         {this.props.children}
         <Footer />
+        <BackTop />
       </React.Fragment>
     );
   }

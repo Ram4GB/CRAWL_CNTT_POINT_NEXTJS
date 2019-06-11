@@ -26,11 +26,11 @@ export default class Summary extends Component {
     };
   }
   render() {
-    // console.log(this.props.data);
-    console.log(this.state.data);
+    const { isLoading } = this.props;
     return (
       <div style={{ height: "500px", overflowY: "scroll" }}>
         <Table
+          loading={isLoading}
           title={() => (
             <h5 style={{ textAlign: "center" }} className="h5">
               Top {this.state.top} sinh viên cao nhất khoa
