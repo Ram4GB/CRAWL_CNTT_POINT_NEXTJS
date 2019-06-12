@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import MainLayout from "../layouts/MainLayout";
-import { Col, Row, Card, Carousel, Rate, Descriptions, Icon } from "antd";
+import {
+  Col,
+  Row,
+  Card,
+  Carousel,
+  Rate,
+  Descriptions,
+  Icon,
+  message
+} from "antd";
 import CardAbout from "../components/CardAbout";
 import axios from "axios";
 
@@ -30,7 +39,9 @@ export default class about extends Component {
       email: "",
       rateTool: 0,
       rateContent: 0,
-      rateBeauty: 0
+      rateBeauty: 0,
+      isLoading: false,
+      content: ""
     };
   }
   render() {
@@ -54,6 +65,11 @@ export default class about extends Component {
                 <h1 style={{ textAlign: "center" }} className="display-4">
                   Đây là bảng đánh giá
                 </h1>
+                <p className="h4">
+                  -Nếu mã sinh viên của bạn hông có trong danh sách
+                </p>
+                <p className="h4">-Nếu bạn có thêm đóng góp ý kiến</p>
+                <p className="h4">=>Hãy gửi cho chúng tôi</p>
               </div>
             </div>
             <Descriptions bordered column={1}>
@@ -63,6 +79,7 @@ export default class about extends Component {
                 }
               >
                 <Rate
+                  value={this.state.rateTool}
                   style={{ color: "blue" }}
                   character={<Icon type="like" />}
                   onChange={this.rateTool}
@@ -73,7 +90,10 @@ export default class about extends Component {
                   <p style={{ fontSize: "1.5em" }}>Nội dung của trang web: </p>
                 }
               >
-                <Rate onChange={this.rateContent} />
+                <Rate
+                  value={this.state.rateContent}
+                  onChange={this.rateContent}
+                />
               </Descriptions.Item>
               <Descriptions.Item
                 label={
@@ -81,6 +101,7 @@ export default class about extends Component {
                 }
               >
                 <Rate
+                  value={this.state.rateBeauty}
                   onChange={this.rateBeauty}
                   style={{ color: "red" }}
                   character={<Icon type="heart" />}
@@ -101,22 +122,42 @@ export default class about extends Component {
                   style={{ fontSize: "1.2em", marginBottom: "10px" }}
                   onChange={this.handleTyping}
                 />
+                <textarea
+                  onChange={this.handleTypingContent}
+                  style={{}}
+                  placeholder="Điền nội dung mà bạn muốn gửi(Có thể không điền)"
+                  style={{ width: "100%", fontSize: "1.5em" }}
+                  rows={6}
+                  id="content"
+                />
                 <small
-                  style={{ fontSize: "1.2em", marginBottom: "10px" }}
+                  style={{ fontSize: "1em", marginBottom: "10px" }}
                   id="emailHelp"
                   className="form-text text-muted"
                 >
                   Chúng tôi sẽ không chia sẻ email của các bạn
                 </small>
               </div>
-              <button
-                type="button"
-                onClick={this.handleSubmit}
-                style={{ display: "block", width: "100%" }}
-                className="btn btn-primary"
-              >
-                Gửi
-              </button>
+              {this.state.isLoading ? (
+                <button
+                  type="button"
+                  disabled
+                  style={{ display: "block", width: "100%" }}
+                  className="btn btn-danger"
+                >
+                  Đang gửi...
+                  <Icon type="loading" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={this.handleSubmit}
+                  style={{ display: "block", width: "100%" }}
+                  className="btn btn-primary"
+                >
+                  Nhấn để gửi
+                </button>
+              )}
             </form>
           </section>
         </div>
@@ -148,14 +189,40 @@ export default class about extends Component {
       email: document.getElementById("exampleInputEmail1").value
     });
   };
+  handleTypingContent = () => {
+    this.setState({
+      content: document.getElementById("content").value
+    });
+  };
   handleSubmit = async () => {
+    this.setState({
+      isLoading: true
+    });
     console.log(this.state);
-
-    let data = await axios({
-      url: "https://5ce2c23be3ced20014d35e3d.mockapi.io/api/rate",
-      method: "POST",
-      data: this.state
-    }).catch(e => console.log(e));
-    console.log(data);
+    if (this.state.email === "") {
+      message.error(<p>Mời bạn nhập Email</p>);
+      document.getElementById("exampleInputEmail1").focus();
+    } else {
+      let data = await axios({
+        url: "https://5ce2c23be3ced20014d35e3d.mockapi.io/api/rate",
+        method: "POST",
+        data: this.state
+      }).catch(e => console.log(e));
+      if (data.status === 201) {
+        message.success(<p>Cảm ơn bạn đã phản hồi về cho chúng tôi</p>);
+      }
+      this.setState({
+        rateBeauty: 0,
+        rateContent: 0,
+        rateTool: 0,
+        email: "",
+        content: ""
+      });
+      document.getElementById("exampleInputEmail1").value = "";
+      document.getElementById("content").value = "";
+    }
+    this.setState({
+      isLoading: false
+    });
   };
 }

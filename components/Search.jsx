@@ -97,7 +97,6 @@ export default class Search extends Component {
           description="Không có thành viên này trong khoa"
           type="error"
           showIcon
-          closable
         />
       );
     }

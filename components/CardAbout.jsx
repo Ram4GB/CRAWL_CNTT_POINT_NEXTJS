@@ -39,9 +39,11 @@ export default class CardAbout extends Component {
                     </p>
                     <ul className="list-inline">
                       <li>
-                        <button className="btn btn-primary">
-                          <Icon style={{ fontSize: "2em" }} type="facebook" />
-                        </button>
+                        <a target="_blank" href={member.facebook}>
+                          <button className="btn btn-primary">
+                            <Icon style={{ fontSize: "2em" }} type="facebook" />
+                          </button>
+                        </a>
                       </li>
                     </ul>
                   </div>
