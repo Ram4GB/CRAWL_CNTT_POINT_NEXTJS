@@ -20,6 +20,9 @@ export default class MainLayout extends Component {
     };
   }
   render() {
+    console.log("Hổng có hack được đâu");
+    console.log("Liu liu");
+    console.error("Ninh quá đẹp trai");
     return (
       <React.Fragment>
         <Head>
@@ -65,15 +68,20 @@ export default class MainLayout extends Component {
         <div
           style={{
             position: "fixed",
-            top: "50px",
-            left: "0px"
+            bottom: "40px",
+            left: "40px"
           }}
         >
           <button
             id="buttonTab"
             onClick={this.handleClose}
             className="btn btn-primary"
-            style={{ display: "none" }}
+            style={{
+              display: "none",
+              width: "40px",
+              height: "40px",
+              borderRadius: "40px"
+            }}
           >
             <Icon style={{ fontSize: "1.em" }} type="unordered-list" />
           </button>
@@ -90,12 +98,16 @@ export default class MainLayout extends Component {
     });
   };
   showAside = items => {
-    return items.map(item => {
-      return (
-        <a key={uuid.v4()} href={`#${item.id}`}>
-          <p>{item.title}</p>
-        </a>
-      );
-    });
+    if (items.length != 0) {
+      return items.map(item => {
+        return (
+          <a key={uuid.v4()} href={`#${item.id}`}>
+            <p>{item.title}</p>
+          </a>
+        );
+      });
+    } else {
+      return <p>Xin chào bạn </p>;
+    }
   };
 }

@@ -4,6 +4,8 @@ import axios from "axios";
 import { Descriptions, Row, Col, Divider, Alert } from "antd";
 import uuid from "uuid";
 
+const aside = [];
+
 export default class infor extends Component {
   static async getInitialProps({ query }) {
     console.log(
@@ -51,15 +53,12 @@ export default class infor extends Component {
   render() {
     const { sv } = this.props;
     return (
-      <MainLayout>
+      <MainLayout aside={aside}>
         <Row style={{ width: "90%", margin: "auto" }}>
           <Col style={{ margin: "10px" }}>
             <Descriptions column={1} bordered title="Chi tiết của sinh viên ">
               <Descriptions.Item label="Mã sinh viên">
                 {sv.mssv}
-              </Descriptions.Item>
-              <Descriptions.Item label="Tình trạng">
-                {sv.HK3 ? "Đang học" : "Đã nghỉ học"}
               </Descriptions.Item>
               <Descriptions.Item label="Tên">{sv.ten}</Descriptions.Item>
               <Descriptions.Item label="Lớp">{sv.lop}</Descriptions.Item>

@@ -61,7 +61,7 @@ function tongKetLopCuaKhoa(arr) {
     }
     FastSort(lop).asc(u => u.lop);
   }
-  console.log(lop);
+  // console.log(lop);
   return lop;
 }
 

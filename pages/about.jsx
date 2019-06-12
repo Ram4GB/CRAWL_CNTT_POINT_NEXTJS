@@ -14,6 +14,7 @@ import CardAbout from "../components/CardAbout";
 import axios from "axios";
 
 const { Meta } = Card;
+const aside = [];
 
 const team = [
   {
@@ -46,7 +47,7 @@ export default class about extends Component {
   }
   render() {
     return (
-      <MainLayout>
+      <MainLayout aside={aside}>
         <div className="container">
           <section id="team" className="pb-5">
             <div className="container">

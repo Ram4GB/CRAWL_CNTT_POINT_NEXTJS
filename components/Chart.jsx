@@ -47,7 +47,7 @@ export default class Chart extends Component {
       data,
       width: screen.width
     });
-    console.log(document.body.clientWidth);
+    // console.log(document.body.clientWidth);
   }
   UNSAFE_componentWillReceiveProps(next) {
     let data = tongKetLopCuaKhoa(next.data);
