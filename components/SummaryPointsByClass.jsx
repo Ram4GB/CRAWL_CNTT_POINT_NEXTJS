@@ -19,7 +19,7 @@ export default class SummaryPointsByClass extends Component {
   }
   render() {
     return (
-      <div style={{ overflowX: "scroll" }}>
+      <div style={{}}>
         <h3 style={{ textAlign: "center" }} className="h3">
           Điểm Cao nhất theo lớp
         </h3>
@@ -37,7 +37,7 @@ export default class SummaryPointsByClass extends Component {
   componentDidMount() {
     this.setState({
       data: timSinhVienCaoNhatTheoLop(this.props.data),
-      width: screen.width
+      width: screen.width - 100
     });
   }
   UNSAFE_componentWillReceiveProps(next) {

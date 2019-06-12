@@ -22,7 +22,7 @@ export default class MainLayout extends Component {
   render() {
     console.log("Hổng có hack được đâu");
     console.log("Liu liu");
-    console.error("Ninh quá đẹp trai");
+    console.log("Ninh quá đẹp trai");
     return (
       <React.Fragment>
         <Head>

@@ -45,7 +45,7 @@ export default class Chart extends Component {
     let data = tongKetLopCuaKhoa(this.props.data);
     this.setState({
       data,
-      width: screen.width
+      width: screen.width - 100
     });
     // console.log(document.body.clientWidth);
   }
