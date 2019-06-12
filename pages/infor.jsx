@@ -64,10 +64,8 @@ export default class infor extends Component {
               <Descriptions.Item label="Lớp">{sv.lop}</Descriptions.Item>
               <Descriptions.Item label="Khoa">{sv.khoa}</Descriptions.Item>
               <Descriptions.Item label="Ngành">{sv.nganh}</Descriptions.Item>
-              <Descriptions.Item label="Điểm">
-                {this.showPointStudent(sv)}
-              </Descriptions.Item>
             </Descriptions>
+            {this.showPointStudent(sv)}
           </Col>
         </Row>
       </MainLayout>

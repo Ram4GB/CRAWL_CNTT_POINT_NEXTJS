@@ -87,7 +87,6 @@ export default class Search extends Component {
           }
           type="info"
           showIcon
-          closable
         />
       );
     else {

@@ -56,7 +56,7 @@ export default class MainLayout extends Component {
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             rel="stylesheet"
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <link rel="stylesheet" href="/static/nprogress.css" />
           <link rel="stylesheet" href="/static/style.css" />
@@ -68,7 +68,7 @@ export default class MainLayout extends Component {
         <div
           style={{
             position: "fixed",
-            bottom: "40px",
+            bottom: "50px",
             left: "40px"
           }}
         >

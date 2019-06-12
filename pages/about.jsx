@@ -22,14 +22,21 @@ const team = [
       "https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/12376634_710832735724954_4776568366230666517_n.jpg?_nc_cat=100&_nc_eui2=AeGDWO5hWecrjAAEkK3CdWBdPhkFfBhkIDuAPfkrLQQZ2ecnGHCJHgkI4fy4U7vV7qH7plNi-qpPaNxhuHXcFBp5M8sW0nyixuQSCbsQ63ogsg&_nc_oc=AQnu8IdTRC851FR8MVcNGzFKqQ0M0h8AC7D12LLMl8x7Pw5rUtfNETbTUn237qAR8DQ&_nc_ht=scontent.fsgn5-5.fna&oh=67afc3561ad15f0f383aec56c4573e7b&oe=5D98B17C",
     name: "Lê Minh Cường",
     facebook: "https://www.facebook.com/le.minhcuong.9638",
-    nickname: "Ram4GB"
+    nickname: "Ram4GB",
+    quote: "Học công nghệ thông tin dễ",
+    behideQuote:
+      "Người không có nhận thức sâu xa sẽ có ngày sẽ gặp phiền muộn, âu lo."
   },
   {
     img:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC",
     name: "Nguyễn An Ninh",
     facebook: "https://www.facebook.com/ninhnguyen375",
-    nickname: ""
+    nickname: "ninh",
+    quote:
+      "Học cho rộng, hỏi cho kỹ, nghĩ cho cẩn thận, phân biệt cho rõ, làm cho hết sức.",
+    behideQuote:
+      "Có kiến thức thì không nghi ngờ, có lòng nhân thì không ưu tư, có dũng cảm thì không sợ hãi."
   }
 ];
 
@@ -63,9 +70,9 @@ export default class about extends Component {
             </div>
             <div className="jumbotron jumbotron-fluid">
               <div className="container">
-                <h1 style={{ textAlign: "center" }} className="display-4">
+                <h2 style={{ textAlign: "center" }} className="display-4">
                   Đây là bảng đánh giá
-                </h1>
+                </h2>
                 <p className="h4">
                   -Nếu mã sinh viên của bạn hông có trong danh sách
                 </p>

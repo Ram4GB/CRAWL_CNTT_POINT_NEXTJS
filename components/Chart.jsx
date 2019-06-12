@@ -22,7 +22,7 @@ export default class Chart extends Component {
     const { data, width } = this.state;
     return (
       <>
-        <h5 style={{ textAlign: "center" }} className="h5">
+        <h5 style={{ textAlign: "center" }} className="h4">
           Bảng tổng kết sinh viên
         </h5>
         <div style={{}}>

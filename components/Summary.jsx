@@ -32,7 +32,7 @@ export default class Summary extends Component {
         <Table
           loading={isLoading}
           title={() => (
-            <h5 style={{ textAlign: "center" }} className="h5">
+            <h5 style={{ textAlign: "center" }} className="h4">
               Top {this.state.top} sinh viên cao nhất khoa
               <InputNumber
                 style={{ margin: "5px" }}

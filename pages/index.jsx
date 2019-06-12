@@ -115,7 +115,7 @@ export default class index extends Component {
         <Row>
           <Col sm={24} lg={24}>
             <p style={{ textAlign: "center", margin: "5px" }} className="h4">
-              Chọn khoa mà bạn muốn tìm kiếm ?
+              Chọn khoa
             </p>
             <Select
               onChange={this.handleChange}

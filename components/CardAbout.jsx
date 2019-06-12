@@ -19,24 +19,18 @@ export default class CardAbout extends Component {
                         alt="card image"
                       />
                     </p>
-                    <h4 className="card-title">{member.name}</h4>
-                    <p className="card-text">
-                      This is basic card with image on top, title, description
-                      and button.
-                    </p>
+                    <h4 className="card-title">
+                      {member.name}({member.nickname ? member.nickname : ""})
+                    </h4>
+                    <p className="card-text">{member.quote}</p>
                   </div>
                 </div>
               </div>
               <div className="backside">
                 <div className="card">
                   <div className="card-body text-center mt-4">
-                    <h4 className="card-title">Sunlimetech</h4>
-                    <p className="card-text">
-                      This is basic card with image on top, title, description
-                      and button.This is basic card with image on top, title,
-                      description and button.This is basic card with image on
-                      top, title, description and button.
-                    </p>
+                    <h4 className="card-title">Có thể bạn cần biết</h4>
+                    <p className="card-text">{member.behideQuote}</p>
                     <ul className="list-inline">
                       <li>
                         <a target="_blank" href={member.facebook}>
