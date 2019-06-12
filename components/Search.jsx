@@ -44,7 +44,7 @@ export default class Search extends Component {
     return (
       <form action="" style={{ margin: "20px" }}>
         <div className="form-group">
-          <label>Tra cứu hạng</label>
+          <label style={{ fontSize: "1.2em" }}>Tra cứu hạng của bạn</label>
           <AutoComplete
             dataSource={this.state.dataSource}
             onSelect={onSelect}
@@ -69,6 +69,7 @@ export default class Search extends Component {
   }
   showResult = () => {
     const { result, flag, rank } = this.state;
+    const { khoa } = this.props;
     if (flag == true)
       return (
         <Alert
@@ -79,8 +80,8 @@ export default class Search extends Component {
                 Bạn hạng {rank} trong tổng số {this.props.data.length} của khoa
               </p>
               <p>{`${result.mssv} : ${result.ten} : ${result.ngaySinh}`}</p>
-              <Link>
-                <a href={`/infor?id=${result.mssv}`}>Chi tiết</a>
+              <Link href={`/infor?id=${result.mssv}&faculty=${khoa}`}>
+                <a>Chi tiết</a>
               </Link>
             </>
           }

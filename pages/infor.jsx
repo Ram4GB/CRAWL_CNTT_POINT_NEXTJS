@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import MainLayout from "../layouts/MainLayout";
 import axios from "axios";
-import { Descriptions, Row, Col, Divider } from "antd";
+import { Descriptions, Row, Col, Divider, Alert } from "antd";
+import uuid from "uuid";
 
 export default class infor extends Component {
   static async getInitialProps({ query }) {
@@ -21,53 +22,30 @@ export default class infor extends Component {
     return { sv: data.data[0] };
   }
   showPointStudent = sv => {
-    let hk1 = sv.HK1 ? sv.HK1 : null;
     let s = [];
-    if (hk1) {
-      let data = Object.entries(hk1);
-      s.push(<p>Điểm học kì 1</p>);
-      for (let i = 0; i < data.length; i++) {
-        s.push(
-          <>
-            <p key={1}>
-              {data[i][0]} {data[i][1]}
-            </p>
-          </>
-        );
-      }
-      s.push(<Divider />);
-    }
-
-    let hk2 = sv.HK2 ? sv.HK2 : null;
-    if (hk2) {
-      let data = Object.entries(hk2);
-      s.push(<p>Điểm học kì 2</p>);
-      for (let i = 0; i < data.length; i++) {
-        s.push(
-          <>
-            <p key={2}>
-              {data[i][0]} {data[i][1]}
-            </p>
-          </>
-        );
-      }
-      s.push(<Divider />);
-    }
-
-    let hk3 = sv.HK3 ? sv.HK3 : null;
-    if (hk3) {
-      let data = Object.entries(hk3);
-      s.push(<p>Điểm học kì 3</p>);
-      for (let i = 0; i < data.length; i++) {
-        s.push(
-          <>
-            <p key={3}>
-              {data[i][0]} {data[i][1]}
-            </p>
-          </>
+    let x;
+    let temp = [];
+    let i = 0;
+    for (x of sv.diem) {
+      i++;
+      for (let [key, value] of Object.entries(x)) {
+        temp.push(
+          <p key={uuid.v4()} className="h4">
+            {key} {value}
+          </p>
         );
       }
     }
+    let alert = (
+      <Alert
+        key={i}
+        message="Thông tin điểm thi"
+        description={temp}
+        type="info"
+        showIcon
+      />
+    );
+    s.push(alert);
     return s;
   };
   render() {

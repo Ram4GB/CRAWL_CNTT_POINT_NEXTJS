@@ -42,7 +42,7 @@ function tongKetLopCuaKhoa(arr) {
       let dem = 1;
       let sinhVien = arr[i];
       let max = arr[i].diemHe4TichLuy;
-      for (let j = i + 1; j < arr.length; j++)
+      for (let j = i + 1; j < arr.length; j++) {
         if (arr[i].lop.indexOf(arr[j].lop) != -1) {
           dem++;
           if (parseFloat(max) < parseFloat(arr[j].diemHe4TichLuy)) {
@@ -50,6 +50,7 @@ function tongKetLopCuaKhoa(arr) {
             sinhVien = arr[j];
           }
         }
+      }
       let obj = {
         lop: arr[i].lop,
         sl: dem,

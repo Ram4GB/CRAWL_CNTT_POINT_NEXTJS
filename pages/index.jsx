@@ -114,20 +114,20 @@ export default class index extends Component {
           </Col>
         </Row>
         <Row>
-          <Col sm={24} lg={12}>
+          <Col sm={24} lg={24}>
             <Summary isLoading={isLoading} data={dataSource} />
           </Col>
-          <Col sm={24} lg={12}>
+          <Col sm={24} lg={24}>
             <Chart data={dataSource} />
           </Col>
         </Row>
         <Row>
-          <Col sm={24} lg={12}>
-            <Search data={dataSource} />
+          <Col sm={24} lg={24}>
+            <Search khoa={khoa} data={dataSource} />
           </Col>
         </Row>
         <Row>
-          <Col sm={24} lg={12}>
+          <Col sm={24} lg={24}>
             <SummaryPointsByClass isLoading={isLoading} data={dataSource} />
           </Col>
         </Row>

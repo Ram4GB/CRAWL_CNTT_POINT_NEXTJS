@@ -35,6 +35,12 @@ export default class MainLayout extends Component {
             integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
             crossOrigin="anonymous"
           />
+          <link
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous"
+          />
           <link rel="stylesheet" href="/static/nprogress.css" />
           <link rel="stylesheet" href="/static/style.css" />
         </Head>
