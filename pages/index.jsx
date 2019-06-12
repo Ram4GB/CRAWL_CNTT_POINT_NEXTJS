@@ -2,13 +2,35 @@ import React, { Component } from "react";
 import { Row, Col, Select } from "antd";
 import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
-import Link from "next/link";
 import Summary from "../components/Summary";
 import Chart from "../components/Chart";
 import Search from "../components/Search";
 import SummaryPointsByClass from "../components/SummaryPointsByClass";
 import constant from "../constants/constants";
 import TableSummary from "../components/TableSummary";
+
+const aside = [
+  {
+    title: "Bảng điểm sinh viên",
+    id: "bangdiemsinhvien"
+  },
+  {
+    title: "Top 5 sinh viên cao nhất",
+    id: "top5sinhvien"
+  },
+  {
+    title: "Bảng tổng kết sinh viên",
+    id: "bangtongketsinhvien"
+  },
+  {
+    title: "Tìm kiếm sinh viên",
+    id: "timkiemsinhvien"
+  },
+  {
+    title: "Điểm cao nhất theo lớp",
+    id: "diemcaonhattheolop"
+  }
+];
 
 const { Option } = Select;
 export default class index extends Component {
@@ -89,13 +111,16 @@ export default class index extends Component {
   render() {
     const { selectedRowKeys, dataSource, khoa, isLoading } = this.state;
     return (
-      <MainLayout>
+      <MainLayout aside={aside}>
         <Row>
           <Col sm={24} lg={24}>
+            <p style={{ textAlign: "center", margin: "5px" }} className="h4">
+              Chọn khoa mà bạn muốn tìm kiếm ?
+            </p>
             <Select
               onChange={this.handleChange}
               defaultValue={`Khoa CNTT K17`}
-              style={{ width: 150 }}
+              style={{ width: "100%" }}
             >
               <Option value={constant.CNTT_K17}>Khoa CNTT K17</Option>
               <Option value={constant.CNTT_K18}>Khoa CNTT K18</Option>
@@ -104,7 +129,12 @@ export default class index extends Component {
             </Select>
           </Col>
         </Row>
-        <Row>
+        <Row id="timkiemsinhvien">
+          <Col sm={24} lg={24}>
+            <Search khoa={khoa} data={dataSource} />
+          </Col>
+        </Row>
+        <Row id="bangdiemsinhvien">
           <Col sm={24}>
             <TableSummary
               isLoading={isLoading}
@@ -113,20 +143,17 @@ export default class index extends Component {
             />
           </Col>
         </Row>
-        <Row>
+        <Row id="top5sinhvien">
           <Col sm={24} lg={24}>
             <Summary isLoading={isLoading} data={dataSource} />
           </Col>
+        </Row>
+        <Row id="bangtongketsinhvien">
           <Col sm={24} lg={24}>
             <Chart data={dataSource} />
           </Col>
         </Row>
-        <Row>
-          <Col sm={24} lg={24}>
-            <Search khoa={khoa} data={dataSource} />
-          </Col>
-        </Row>
-        <Row>
+        <Row id="diemcaonhattheolop">
           <Col sm={24} lg={24}>
             <SummaryPointsByClass isLoading={isLoading} data={dataSource} />
           </Col>

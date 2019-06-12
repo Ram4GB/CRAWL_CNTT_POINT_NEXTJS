@@ -20,3 +20,9 @@
 * {
   font-family: monospace !important;
 }
+
+@media only screen and (max-width: 600px) {
+  #buttonTab {
+    display: block !important;
+  }
+}

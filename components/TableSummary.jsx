@@ -30,9 +30,7 @@ export default class TableSummary extends Component {
         // rowSelection={rowSelection}
         columns={columns}
         title={() => (
-          <h4 style={{ textAlign: "center" }}>
-            Bảng điểm học tập của sinh viên
-          </h4>
+          <h4 style={{ textAlign: "center" }}>Bảng điểm sinh viên</h4>
         )}
         footer={() => <h5 style={{ textAlign: "center" }} />}
         expandedRowRender={record => (

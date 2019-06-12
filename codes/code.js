@@ -41,12 +41,12 @@ function tongKetLopCuaKhoa(arr) {
     if (lop.findIndex(u => u.lop == arr[i].lop) == -1) {
       let dem = 1;
       let sinhVien = arr[i];
-      let max = arr[i].diemHe4TichLuy;
+      let max = parseFloat(arr[i].diemHe4TichLuy);
       for (let j = i + 1; j < arr.length; j++) {
         if (arr[i].lop.indexOf(arr[j].lop) != -1) {
           dem++;
           if (parseFloat(max) < parseFloat(arr[j].diemHe4TichLuy)) {
-            max = arr[j].diemHe4TichLuy;
+            max = parseFloat(arr[j].diemHe4TichLuy);
             sinhVien = arr[j];
           }
         }

@@ -4,16 +4,30 @@ import Footer from "../components/Footer";
 import Head from "next/head";
 import NProgress from "nprogress";
 import Router from "next/router";
-import { BackTop } from "antd";
+import { BackTop, Anchor, Drawer } from "antd";
+import { Affix, Button, Menu, Icon } from "antd";
+import uuid from "uuid";
+
 Router.onRouteChangeStart = url => NProgress.start();
 Router.onRouteChangeComplete = url => NProgress.done();
 Router.onRouteChangeError = url => NProgress.done();
+const { Link } = Anchor;
 export default class MainLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      close: false
+    };
+  }
   render() {
     return (
       <React.Fragment>
         <Head>
           <link rel="stylesheet" href="/static/antd.css" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
           <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -47,8 +61,41 @@ export default class MainLayout extends Component {
         <Header />
         {this.props.children}
         <Footer />
-        <BackTop />
+        <BackTop visibilityHeight={100} />
+        <div
+          style={{
+            position: "fixed",
+            top: "50px",
+            left: "0px"
+          }}
+        >
+          <button
+            id="buttonTab"
+            onClick={this.handleClose}
+            className="btn btn-primary"
+            style={{ display: "none" }}
+          >
+            <Icon style={{ fontSize: "1.em" }} type="unordered-list" />
+          </button>
+          <Drawer onClose={this.handleClose} visible={this.state.close}>
+            {this.showAside(this.props.aside)}
+          </Drawer>
+        </div>
       </React.Fragment>
     );
   }
+  handleClose = () => {
+    this.setState({
+      close: !this.state.close
+    });
+  };
+  showAside = items => {
+    return items.map(item => {
+      return (
+        <a key={uuid.v4()} href={`#${item.id}`}>
+          <p>{item.title}</p>
+        </a>
+      );
+    });
+  };
 }
