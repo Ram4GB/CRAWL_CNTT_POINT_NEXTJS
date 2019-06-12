@@ -13,7 +13,8 @@ export default class SummaryPointsByClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      width: 0
     };
   }
   render() {
@@ -22,7 +23,7 @@ export default class SummaryPointsByClass extends Component {
         <h3 style={{ textAlign: "center" }} className="h3">
           Điểm Cao nhất theo lớp
         </h3>
-        <LineChart width={800} height={250} data={this.state.data}>
+        <LineChart width={this.state.width} height={250} data={this.state.data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="lop" />
           <YAxis />
@@ -35,7 +36,8 @@ export default class SummaryPointsByClass extends Component {
   }
   componentDidMount() {
     this.setState({
-      data: timSinhVienCaoNhatTheoLop(this.props.data)
+      data: timSinhVienCaoNhatTheoLop(this.props.data),
+      width: screen.width
     });
   }
   UNSAFE_componentWillReceiveProps(next) {

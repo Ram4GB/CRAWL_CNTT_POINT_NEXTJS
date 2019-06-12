@@ -25,7 +25,7 @@ export default class Chart extends Component {
         <h5 style={{ textAlign: "center" }} className="h5">
           Bảng tổng kết sinh viên
         </h5>
-        <div style={{ overflow: "scroll" }}>
+        <div style={{}}>
           <BarChart width={width} height={500} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="lop" />
