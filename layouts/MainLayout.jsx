@@ -58,6 +58,10 @@ export default class MainLayout extends Component {
             integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
             crossOrigin="anonymous"
           />
+          <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+            rel="stylesheet"
+          />
           <link rel="stylesheet" href="/static/nprogress.css" />
           <link rel="stylesheet" href="/static/style.css" />
         </Head>
