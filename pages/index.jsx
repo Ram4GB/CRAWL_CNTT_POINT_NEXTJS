@@ -37,7 +37,7 @@ export default class index extends Component {
   static async getInitialProps() {
     let data = await axios({
       method: "GET",
-      url: "https://api-with-json-server.herokuapp.com/QTKD_K17"
+      url: "https://api-with-json-server.herokuapp.com/CNTT_K17"
     })
       .catch(e => console.log(e))
       .then(data);
@@ -48,7 +48,7 @@ export default class index extends Component {
     this.state = {
       selectedRowKeys: [],
       dataSource: [],
-      khoa: constant.khoa[2].value, // khoa nao o day
+      khoa: constant.khoa[0].value, // khoa nao o day
       isLoading: false
     };
   }
