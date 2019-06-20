@@ -37,7 +37,7 @@ export default class index extends Component {
   static async getInitialProps() {
     let data = await axios({
       method: "GET",
-      url: "https://api-with-json-server.herokuapp.com/CNTT_K17"
+      url: "https://api-with-json-server.herokuapp.com/QTKD_K17"
     })
       .catch(e => console.log(e))
       .then(data);
@@ -48,7 +48,7 @@ export default class index extends Component {
     this.state = {
       selectedRowKeys: [],
       dataSource: [],
-      khoa: constant.CNTT_K17,
+      khoa: constant.khoa[2].value, // khoa nao o day
       isLoading: false
     };
   }
@@ -62,50 +62,25 @@ export default class index extends Component {
     this.setState({
       isLoading: true
     });
-    switch (value) {
-      case constant.CNTT_K17:
-        data = await axios({
-          method: "GET",
-          url: "https://api-with-json-server.herokuapp.com/CNTT_K17"
-        }).catch(e => console.log(e));
-        this.setState({
-          dataSource: data.data,
-          khoa: value
-        });
-        break;
-      case constant.CNTT_K18:
-        data = await axios({
-          method: "GET",
-          url: "https://api-with-json-server.herokuapp.com/CNTT_K18"
-        }).catch(e => console.log(e));
-        this.setState({
-          dataSource: data.data,
-          khoa: value
-        });
-        break;
-      case constant.QTKD_K17:
-        data = await axios({
-          method: "GET",
-          url: "https://api-with-json-server.herokuapp.com/qtkd_k17"
-        }).catch(e => console.log(e));
-        this.setState({
-          dataSource: data.data,
-          khoa: value
-        });
-        break;
-      case constant.QTKD_K18:
-        data = await axios({
-          method: "GET",
-          url: "https://api-with-json-server.herokuapp.com/QTKD_K18"
-        }).catch(e => console.log(e));
-        this.setState({
-          dataSource: data.data,
-          khoa: value
-        });
-        break;
-    }
+    data = await axios({
+      method: "GET",
+      url: `https://api-with-json-server.herokuapp.com/${value}`
+    }).catch(e => console.log(e));
+    this.setState({
+      dataSource: data.data,
+      khoa: value
+    });
     this.setState({
       isLoading: false
+    });
+  };
+  showFacultyOption = facultys => {
+    return facultys.map((faculty, index) => {
+      return (
+        <Option key={index} value={faculty.value}>
+          {faculty.name}
+        </Option>
+      );
     });
   };
   render() {
@@ -122,10 +97,7 @@ export default class index extends Component {
               defaultValue={`Khoa CNTT K17`}
               style={{ width: "100%" }}
             >
-              <Option value={constant.CNTT_K17}>Khoa CNTT K17</Option>
-              <Option value={constant.CNTT_K18}>Khoa CNTT K18</Option>
-              <Option value={constant.QTKD_K17}>Khoa QTKD K17</Option>
-              <Option value={constant.QTKD_K18}>Khoa QTKD K18</Option>
+              {this.showFacultyOption(constant.khoa)}
             </Select>
           </Col>
         </Row>

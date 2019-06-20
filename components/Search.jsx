@@ -69,7 +69,7 @@ export default class Search extends Component {
   }
   showResult = () => {
     const { result, flag, rank } = this.state;
-    const { khoa } = this.props;
+    const { faculty } = this.props;
     if (flag == true)
       return (
         <Alert
@@ -80,7 +80,7 @@ export default class Search extends Component {
                 Bạn hạng {rank} trong tổng số {this.props.data.length} của khoa
               </p>
               <p>{`${result.mssv} : ${result.ten} : ${result.ngaySinh}`}</p>
-              <Link href={`/infor?id=${result.mssv}&faculty=${khoa}`}>
+              <Link href={`/infor?id=${result.mssv}&faculty=${faculty.value}`}>
                 <a>Chi tiết</a>
               </Link>
             </>
