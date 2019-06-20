@@ -12,17 +12,13 @@ export default class Search extends Component {
     flag: null,
     rank: 0
   };
-  handleSearch = value => {
-    this.setState({
-      dataSource: !value ? [] : ["311741", "311751"]
-    });
-  };
   handleChange = value => {
     this.setState({
       value
     });
   };
-  clickSearch = () => {
+  clickSearch = e => {
+    e.preventDefault();
     let { value } = this.state;
     let { data } = this.props;
     let index = data.findIndex(u => u.mssv === value);
@@ -42,13 +38,11 @@ export default class Search extends Component {
   };
   render() {
     return (
-      <form action="" style={{ margin: "20px" }}>
+      <form onSubmit={this.clickSearch} action="" style={{ margin: "20px" }}>
         <div className="form-group">
           <label style={{ fontSize: "1.2em" }}>Tra cứu hạng của bạn</label>
           <AutoComplete
-            dataSource={this.state.dataSource}
             onSelect={onSelect}
-            onSearch={this.handleSearch}
             placeholder="Tìm kiếm đây"
             onChange={this.handleChange}
           />
