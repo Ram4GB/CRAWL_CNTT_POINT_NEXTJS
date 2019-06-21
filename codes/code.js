@@ -70,9 +70,21 @@ function timSinhVienCaoNhatTheoLop(arr) {
   return temp;
 }
 
+function findNameStudent(name, arr) {
+  let convertName = removeAccent(name);
+  let ar = [];
+  for (let i = 0; i < arr.length; i++) {
+    let temp = removeAccent(arr[i].ten);
+    if (temp.toLowerCase().indexOf(convertName.toLowerCase()) !== -1)
+      ar.push(arr[i]);
+  }
+  return ar;
+}
+
 export {
   convertSVToObject,
   removeAccent,
   tongKetLopCuaKhoa,
-  timSinhVienCaoNhatTheoLop
+  timSinhVienCaoNhatTheoLop,
+  findNameStudent
 };

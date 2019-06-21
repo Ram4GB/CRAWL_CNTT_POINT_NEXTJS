@@ -32,7 +32,7 @@ export default class infor extends Component {
       i++;
       for (let [key, value] of Object.entries(x)) {
         temp.push(
-          <p key={uuid.v4()} className="h4">
+          <p key={uuid.v4()} className="h6">
             {key} {value}
           </p>
         );

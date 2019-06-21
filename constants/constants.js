@@ -15,7 +15,23 @@ export default {
     {
       name: "QTKD_K18",
       value: "qtkd_k18"
+    },
+    {
+      name: "TCNH_K17",
+      value: "tcnh_k17"
+    },
+    {
+      name: "NNA_K17",
+      value: "nna_k17"
+    },
+    {
+      name: "TCNN_K18",
+      value: "tcnn_k18"
     }
+    // {
+    //   name: "SP_Toan_K18",
+    //   value: "sp_toan_k18"
+    // }
   ]
 };
 

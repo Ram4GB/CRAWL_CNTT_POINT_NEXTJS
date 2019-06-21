@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AutoComplete, Alert } from "antd";
 import Link from "next/link";
+import { findNameStudent } from "../codes/code.js";
 function onSelect(value) {
   console.log("onSelect", value);
 }
@@ -22,6 +23,9 @@ export default class Search extends Component {
     let { value } = this.state;
     let { data } = this.props;
     let index = data.findIndex(u => u.mssv === value);
+    if (index == -1) {
+      let temp = findNameStudent(value, data);
+    }
     console.log(data[index]);
     if (index !== -1) {
       this.setState({
